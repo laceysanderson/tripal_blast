@@ -357,6 +357,12 @@ function run_BLAST_tripal_job($program, $query, $database, $output_filestub, $op
  *
  */
 function validate_fasta_sequence($type, $sequence) {
+  // Remove def lines
+  $sequence = preg_replace('/\>.*\n/', '', $sequence);
+
+  // Remove blank lines
+  $sequence = preg_replace('/^[^>]\h*\v+/m', '', $sequence);
+  
   //Includes IUPAC codes.
   $fastaSeqRegEx = ($type == 'nucleotide')
                    ? '/^[ATCGNUKMBVSWDYRHatcgnukmbvswdyrh\[\/\]\s\n\r]*$/'
