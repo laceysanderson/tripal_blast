@@ -1,0 +1,10 @@
+# @file
+# Tripal BLAST services definition.
+
+services:
+  tripal_blast.database_service:
+    class: Drupal\tripal_blast\Services\TripalBlastDatabaseService  
+  tripal_blast.job_service:
+    class: Drupal\tripal_blast\Services\TripalBlastJobService    
+  tripal_blast.program_blastn:
+    class: Drupal\tripal_blast\Services\TripalBlastProgramBlastn

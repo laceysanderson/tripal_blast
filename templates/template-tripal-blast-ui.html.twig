@@ -1,0 +1,98 @@
+{#
+/**
+ * @file
+ * Default theme implementation of BLAST UI Menupage.
+ */
+#}
+
+<div id="tripal-blast-information-window" style="display: none">
+<p align="justify">In Bioinformatics, BLAST (Basic Local Alignment Search Tool) is an algorithm
+for comparing primary biological sequence information, such as the amino-acid
+sequences of different proteins or the nucleotides of DNA sequences. A BLAST
+search enables a researcher to compare a query sequence with a library or
+database of sequences, and identify library sequences that resemble the query
+sequence above a certain threshold. Different types of BLASTs are available
+according to the query sequences. For example, following the discovery of a
+previously unknown gene in the mouse, a scientist will typically perform a
+BLAST search of the human genome to see if humans carry a similar gene;
+BLAST will identify sequences in the human genome that resemble the mouse
+gene based on similarity of sequence.</p>
+
+<blockquote>Altschul,S.F., Gish,W., Miller,W., Myers,E.W. and Lipman,D.J. 
+(1990) Basic local alignment search tool. J. Mol. Biol., 215, 403–410.</blockquote>
+</div>
+
+<div id="tripal-blast-navigation">
+  <div class="tripal-blast-element-left">
+    <h2>BLAST Search</h2>
+  </div>
+  <div class="tripal-blast-element-right">
+    <a href="#" id="tripal-blast-nav-blast">What is BLAST?</a> | 
+    <a href="https://tripal-blast-ui.readthedocs.io/en/latest/user_guide/features.html" target="_blank">Help</a>
+  </div>
+  <div class="tripal-blast-clear-float"></div>
+</div>
+<p>
+  Search for one or more of your sequences (using BLAST). First pick 
+  a query type (nucleotide or protein). You will be able to set search 
+  parameters on the next page. Choose the appropriate program based on the 
+  Query type and Target database type. 
+  <br /><br /><em>Please click on the program name to view the search form</em>.
+<p>
+
+<details>
+  <summary>Recent Jobs</summary>
+  <div class="details-wrapper">
+    {{ recent_jobs }}
+  </div>
+</div>
+
+<div id="tripal-blast-accordion">
+  <h3>Nucleotide Query</h3>
+  <div class="ui-accordion-content">
+    <div class="tripal-blast-content-wrapper">
+      <div class="tripal-blast-element-left">
+        <h4>Nucleotide Database</h4>
+        <small>Search a nucleotide database using a nucleotide query.</small>
+      </div>  
+      <div class="tripal-blast-element-right">
+        {{ context_links['link_blastn'] }} Program
+      </div>
+      <div class="tripal-blast-clear-float">&nbsp;</div>
+    </div>
+    <div class="tripal-blast-content-wrapper">
+      <div class="tripal-blast-element-left">
+        <h4>Protein Database</h4>
+        <small>Search protein database using a translated nucleotide query.</small>
+      </div>  
+      <div class="tripal-blast-element-right">
+        {{ context_links['link_blastx'] }} Program
+      </div>
+      <div class="tripal-blast-clear-float">&nbsp;</div>
+    </div>
+  </div>
+
+  <h3>Protein Query</h3>
+  <div class="ui-accordion-content">
+    <div class="tripal-blast-content-wrapper">
+      <div class="tripal-blast-element-left">
+        <h4>Nucleotide Database</h4>
+        <small>Search translated nucleotide database using a protein query.</small>
+      </div>  
+      <div class="tripal-blast-element-right">
+        {{ context_links['link_tblastn'] }} Program
+      </div>
+      <div class="tripal-blast-clear-float">&nbsp;</div>
+    </div>
+    <div class="tripal-blast-content-wrapper">
+      <div class="tripal-blast-element-left">
+        <h4>Protein Database</h4>
+        <small>Search protein database using a protein query.</small>
+      </div>  
+      <div class="tripal-blast-element-right">        
+        {{ context_links['link_blastp'] }} Program
+      </div>
+      <div class="tripal-blast-clear-float">&nbsp;</div>
+    </div>
+  </div>
+</div>

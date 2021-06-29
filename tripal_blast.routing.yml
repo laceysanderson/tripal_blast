@@ -1,0 +1,92 @@
+# @file
+# Tripal BLAST routes definition.
+
+
+# This route is for single all-in-one BLAST user interface.
+# Choices of query type, protein or nucleotide, outlined in this page.
+tripal_blast.blast_ui:
+  path: 'blast'
+  defaults:
+    _title: 'Tripal BLAST'
+    _controller: '\Drupal\tripal_blast\Controller\TripalBlastUIController::ui'
+  requirements:
+    _permission: 'administer tripal'
+
+
+# Routes below are for two main query types BLAST shown in the UI.
+
+# blast{query type}/{db type}
+tripal_blast.blast_program:
+  path: 'blast/{query}/{db}'
+  defaults:
+    _title: 'Tripal BLAST'
+    _form: '\Drupal\tripal_blast\Form\TripalBlastForm'
+  requirements:
+    _permission: 'administer tripal'
+    query: 'nucleotide|protein'
+    db: 'nucleotide|protein'
+
+# Route to view BLAST result
+tripal_blast.blast_report:
+  path: 'blast/report/{job_id}'
+  defaults:
+    _title: 'BLAST Results'
+    _controller: '\Drupal\tripal_blast\Controller\TripalBlastReportController::report'
+  requirements:
+    _permission: 'access content'
+
+
+# Routes below are for configuration and help.
+# Uses tabs @see tripal_blast.link.task.yml.
+
+tripal_blast.configuration:
+  path: '/admin/tripal/extension/tripal_blast/configuration'
+  defaults:
+    _title: 'Tripal Blast: Configuration'
+    _form: '\Drupal\tripal_blast\Form\TripalBlastConfigurationForm'
+  requirements:
+    _permission: 'administer tripal'
+
+tripal_blast.help:
+  path: '/admin/tripal/extension/tripal_blast/configuration/help'
+  defaults:
+    _title: 'Tripal Blast: Help'
+    _controller: '\Drupal\tripal_blast\Controller\TripalBlastHelpController::help'
+  requirements:
+    _permission: 'administer tripal'
+
+
+# Route set below defines routes for the management of 
+# configuration entity (list, add, edit and delete).    
+entity.tripal_blast.blast_database:
+  path: '/admin/tripal/extension/tripal_blast/configuration/tripalblastdatabase'
+  defaults:
+    _entity_list: 'tripalblastdatabase'
+    _title: 'Tripal BLAST Query Database'
+  requirements:
+    _permission: 'administer tripal'
+
+entity.tripal_blast.blast_database.add:
+  path: '/admin/tripal/extension/tripal_blast/configuration/tripalblastdatabase/add'
+  defaults:
+    _entity_form: 'tripalblastdatabase.add'
+    _title: 'Tripal BLAST Add Query Database'
+  requirements:
+    _permission: 'administer tripal'
+
+entity.tripalblastdatabase.edit_form:
+  path: '/admin/tripal/extension/tripal_blast/configuration/tripalblastdatabase/edit/{tripalblastdatabase}'
+  defaults:
+    _entity_form: 'tripalblastdatabase.edit'
+    _title: 'Tripal BLAST Edit Query Database'
+  requirements:
+    _permission: 'administer tripal'
+
+entity.tripalblastdatabase.delete_form:
+  path: '/admin/tripal/extension/tripal_blast/configuration/tripalblastdatabase/{tripalblastdatabase}/delete'
+  defaults:
+    _entity_form: 'tripalblastdatabase.delete'
+    _title: 'Tripal BLAST Delete Query Database'
+  requirements:
+    _permission: 'administer tripal'
+
